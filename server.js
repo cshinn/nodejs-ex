@@ -5,7 +5,7 @@ var express = require('express'),
     eps     = require('ejs'),
     morgan  = require('morgan');
 
-var Botkit = require('./node_modules/botkit/lib/Botkit.js');
+var Botkit = require('botkit');
 
 function get_response(){
   var responses = [
