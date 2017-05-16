@@ -64,7 +64,7 @@ var valuesMessage = {
     ]
 }
 
-controller.hears(['praise, reward, /+/+'], 'ambient', function(bot, message) {
+controller.hears(['praise', 'reward', '++'], 'ambient', function(bot, message) {
   bot.reply(message, valuesMessage);
 });
 
