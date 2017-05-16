@@ -1,10 +1,3 @@
-//  OpenShift sample Node application
-var express = require('express'),
-    fs      = require('fs'),
-    app     = express(),
-    eps     = require('ejs'),
-    morgan  = require('morgan');
-
 var Botkit = require('botkit');
 
 function get_response(){
@@ -32,6 +25,59 @@ var bot = controller.spawn({
 controller.hears(['why did the chicken cross the road'], 'direct_message,direct_mention,mention', function(bot, message) {
   bot.reply(message, get_response());
 });
+var valuesMessage = {
+    "text": "What would you like to praise them for?",
+    "response_type": "in_channel",
+    "attachments": [
+        {
+            "text": "Choose a game to play",
+            "fallback": "If you could read this message, you'd be choosing something fun to do right now.",
+            "color": "#cc0000",
+            "attachment_type": "default",
+            "callback_id": "value_selection",
+            "actions": [
+                {
+                    "name": "values_list",
+                    "text": "Choose a value",
+                    "type": "select",
+                    "options": [
+                        {
+                            "text": "Design openly",
+                            "value": "design"
+                        },
+                        {
+                            "text": "Offer generously",
+                            "value": "offer"
+                        },
+                        {
+                            "text": "Nurture curiosity",
+                            "value": "nurture"
+                        },
+                        {
+                            "text": "Cultivate community",
+                            "value": "cultivate"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
+controller.hears(['++'], 'ambient', function(bot, message) {
+  bot.reply(message, valuesMessage);
+});
+
+
+
+
+
+
+var express = require('express'),
+fs      = require('fs'),
+app     = express(),
+eps     = require('ejs'),
+morgan  = require('morgan');
 
 Object.assign=require('object-assign')
 
